@@ -128,17 +128,39 @@ body {
 
 
 /* categories  */
-#filters {
+#filters-wrapper {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  position: relative;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+#filters-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+#filters-scroll::-webkit-scrollbar {
+  display: none; 
 }
 
 .filter {
-  text-align: center;
-  margin-right: 2rem;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
   opacity: 0.7;
+}
+
+.filter i {
+  margin-bottom: 5px;
 }
 
 .filter a {
@@ -155,16 +177,78 @@ body {
   font-size: 0.8rem;
 }
 
+.scroll-arrow {
+   background: none;
+   border: none;
+   cursor: pointer;
+}
+
+.scroll-btn {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.scroll-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  #filters-scroll {
+    flex-wrap: block;
+  }
+
+  .filter {
+    flex: 0 0 25%;
+    text-align: center;
+  }
+
+  .scroll-arrow {
+    display: inline-block;
+  }
+
+  .tax-toggle {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) {
+  .scroll-arrow {
+    display: none;
+  }
+  
+  #filters-wrapper {
+    flex-wrap: nowrap;
+  }
+
+  #filters-scroll {
+    overflow-x: visible;
+    flex-wrap: nowrap;
+  }
+
+  .filter {
+    width: auto;
+  }
+
+  .tax-toggle {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}
+
 .tax-info {
   display: none;
 }
 
 .tax-toggle {
+  min-width: 220px;
   border: 1px solid black;
   border-radius: 1rem;
   height: 3.25rem;
-  padding: 1rem;
-  margin-left: 2rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
