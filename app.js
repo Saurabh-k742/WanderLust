@@ -94,7 +94,7 @@ app.use("/", userRouter);
 
 // If route does not match with the request 
 app.get("/", (req, res) => {
-  res.send("🌍 Travellers Villa is live and running!");
+  res.send("Travellers Villa is live and running!");
 });
 
 app.all(/.*/, (req, res, next) => {
