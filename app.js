@@ -36,6 +36,12 @@ async function main() {
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+app.use((req, res, next) => {
+  res.locals.currUser = null;
+  next();
+});
+
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
@@ -91,12 +97,11 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-
-// If route does not match with the request 
 app.get("/", (req, res) => {
   res.send("Travellers Villa is live and running!");
 });
 
+// If route does not match with the request 
 app.all(/.*/, (req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
